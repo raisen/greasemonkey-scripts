@@ -29,6 +29,7 @@ function changeHeader() {
         e.stopPropagation();
         window.scrollTo(0,0);
     });
+    document.querySelector('main > div.topictitle').style.width = '80%';
     document.querySelector('main > div.row').style.width = '80%';
 }
 
