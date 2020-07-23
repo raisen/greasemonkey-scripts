@@ -20,7 +20,7 @@ function changeHeader() {
             return window.setTimeout(changeHeader, 1000);
         }
     }
-    var currentItem = document.querySelector('.current.item');
+    const currentItem = document.querySelector('.current.item');
     if(!currentItem) return retryOrLeave();
 
     currentItem.style.cursor = 'pointer';
@@ -34,27 +34,26 @@ function changeHeader() {
 
 var numTriesRun = 0;
 function run() {
-    console.log('run');
     const retryOrLeave = () => {
         if(numTriesRun++ < 3) {
             return window.setTimeout(run, 1000);
         }
-        console.log('giving up');
+        console.warn('giving up');
     }
-    var h3s = document.querySelectorAll('h3.title');
+    const h3s = document.querySelectorAll('h3.title');
     if(!h3s) { return retryOrLeave(); }
 
-    var summary = document.querySelector('.summary-section nav:last-child ul.summary-list');
+    const summary = document.querySelector('.summary-section nav:last-child ul.summary-list');
     if(!summary) { return retryOrLeave(); }
 
-    var li = summary.querySelector('li');
+    const li = summary.querySelector('li');
     if(!li) { return retryOrLeave(); }
 
     h3s.forEach((h3,ix) => {
-        var li2 = li.cloneNode(true);
+        const li2 = li.cloneNode(true);
         li2.querySelector('span').textContent = h3.textContent;
-        var _a = li2.querySelector('a')
-        var a = _a.cloneNode(true);
+        const _a = li2.querySelector('a')
+        const a = _a.cloneNode(true);
         a.setAttribute('href', '#');
         a.addEventListener('click', e => {
             e.stopPropagation();
@@ -75,7 +74,6 @@ window.addEventListener('hashchange', () => {
     if(!window.location.hash) {
         window.scrollTo(0,0);
     }
-    console.log(window.location.hash);
     let matches = window.location.hash.match(/#header(\d*)/);
     if(matches && matches.length === 2) {
         let ix = matches[1];
